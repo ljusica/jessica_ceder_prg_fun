@@ -4,21 +4,34 @@ using UnityEngine;
 
 public class Assignment1 : ProcessingLite.GP21
 {
+    float ix = 11.61f;
+    float iy = 5.29f;
+    float ax1 = 16.19f;
+    float ay1 = 4.75f;
+    float ax2 = 17.32f;
+    float ay2 = 2f;
+    float cx = 22f;
+    float cy = 1f;
 
-    public float x1;
-    public float y1;
-    public float x2;
-    public float y2;
-    public float x;
-    public float y;
-  
+    public float dotSpeed = 1f;
+    public float circleSpeed = 1f;
+    public float lineSpeed = 1f;
 
     // Start is called before the first frame update
     void Start()
     {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
         Background(0);
 
         //J
+        Fill(255, 255, 255);
+        Stroke(255, 255, 255);
         Line(4, 8, 4, 2);
         Line(4, 2, 1, 2);
         Line(1, 2, 1, 4.12f);
@@ -46,7 +59,16 @@ public class Assignment1 : ProcessingLite.GP21
 
         //i
         Line(11.61f, 4.75f, 11.61f, 2);
-        Circle(11.61f, 5.29f, 0.2f);
+        Circle(ix, iy, 0.2f);
+
+            iy += dotSpeed * Time.deltaTime;
+
+        if (iy > 6.615692f || iy < 5.29f)
+        {
+            dotSpeed *= -1;
+            iy += dotSpeed * Time.deltaTime;
+
+        }
 
         //c
         Line(12.35f, 4.75f, 13.9f, 4.75f);
@@ -58,24 +80,36 @@ public class Assignment1 : ProcessingLite.GP21
         Line(14.64f, 4.75f, 14.64f, 2);
         Line(14.64f, 2, 16.19f, 2);
         Line(16.19f, 4.75f, 16.19f, 2);
-        Line(16.19f, 4.75f, 17.32f, 2);
+        Line(ax1, ay1, ax2, ay2);
+
+        ax2 += lineSpeed * Time.deltaTime * 2;
+
+        if (ax2 > 20f || ax2 < 17.32f)
+        {
+            lineSpeed *= -1;
+            ax2 += lineSpeed * Time.deltaTime * 2;
+
+        }
+
+        //triangel
+        Fill(226, 211, 54);
+        Stroke(226, 211, 54);
+        Triangle(20, 7.1f, 16.1f, 12, 23.61f, 11.74f);
 
         //fyrkant
         Fill(229, 99, 99, 255);
         Stroke(229, 99, 99, 255);
-        Square(19.37f, 7.54f, 1);
+        Square(2.45f, 3.16f, 1.62f);
 
-        //triangel
+        //cirkel
         Fill(13, 123, 0, 255);
         Stroke(13, 123, 0, 255);
-        Circle(22, 3, 1);
+        Circle(cx, cy, 1);
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
+        //Add 1 to x axis position
+        cx += circleSpeed * Time.deltaTime * 8;
+        cx = cx % Width;
     }
 
 }
+
